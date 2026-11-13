@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Special Memories ❤️</title>
+    <!-- Tailwind CSS untuk styling cepat & rapi -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts: Poppins & Dancing Script -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .romantic-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        /* Efek kelopak bunga jatuh */
+        .flower {
+            position: absolute;
+            background: pink;
+            border-radius: 50% 0 50% 50%;
+            animation: fall linear infinite;
+            z-index: 10;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-red-50 to-pink-200 min-h-screen flex items-center justify-center overflow-x-hidden relative">
+
+    <!-- AUDIO LATAR BELAKANG (Ganti link src dengan file audio/lagu kamu) -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung pemutar audio.
+    </audio>
+
+    <!-- CONTAINER UTAMA -->
+    <div id="app" class="w-full max-w-md mx-auto p-4 text-center relative z-20">
+
+        <!-- TAHAP 1: AMPLOP SURAT PEMBUKA -->
+        <div id="envelopeSection" class="flex flex-col items-center justify-center transition-all duration-700">
+            <p class="text-pink-700 text-lg mb-4 font-medium animate-pulse">Ada pesan rahasia buat kamu ✨</p>
+            <div onclick="openEnvelope()" class="cursor-pointer bg-white p-8 rounded-2xl shadow-xl border-4 border-pink-300 hover:scale-105 transition-transform duration-300 relative group">
+                <!-- Icon Amplop Surat -->
+                <div class="text-6xl mb-2">💌</div>
+                <h2 class="text-xl font-bold text-gray-800">Buka Surat Ini</h2>
+                <p class="text-xs text-gray-500 mt-1">Sentuh untuk membuka kenangan kita</p>
+            </div>
+        </div>
+
+        <!-- TAHAP 2: KONTEN UTAMA (AWALNYA DI-HIDDEN) -->
+        <div id="mainContent" class="hidden opacity-0 transition-opacity duration-1000 flex flex-col gap-6">
+            
+            <!-- Header Ucapan Romantis -->
+            <div class="bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-pink-200">
+                <h1 class="romantic-font text-4xl text-pink-600 mb-2">Happy Moments With You</h1>
+                <p class="text-gray-700 text-sm leading-relaxed">
+                    Terima kasih sudah jadi bagian terindah dalam hidupku. Setiap detik bareng kamu adalah memori berharga yang bakal selalu aku simpan. 💖
+                </p>
+            </div>
+
+            <!-- Galeri Foto Kenangan -->
+            <div class="bg-white/80 backdrop-blur-md p-5 rounded-2xl shadow-lg border border-pink-200">
+                <h3 class="font-semibold text-gray-800 mb-4 text-left border-b pb-2 border-pink-100">📸 Our Sweet Memories</h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- Ganti link foto dengan foto kamu di folder /images atau link foto online -->
+                    <div class="overflow-hidden rounded-xl shadow-md aspect-square bg-pink-50">
+                        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=500&q=80" alt="Kenangan 1" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="overflow-hidden rounded-xl shadow-md aspect-square bg-pink-50">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80" alt="Kenangan 2" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="overflow-hidden rounded-xl shadow-md aspect-square bg-pink-50">
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=500&q=80" alt="Kenangan 3" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="overflow-hidden rounded-xl shadow-md aspect-square bg-pink-50">
+                        <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=500&q=80" alt="Kenangan 4" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catatan Kecil / Kata-kata Bucin Tambahan -->
+            <div class="bg-pink-500 text-white p-5 rounded-2xl shadow-lg text-center">
+                <p class="text-sm italic font-light">"I love you not only for what you are, but for what I am when I am with you."</p>
+                <span class="block mt-2 text-xs font-semibold tracking-wider uppercase">Forever Yours ❤️</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPT INTERAKTIF & ANIMASI -->
+    <script>
+        function openEnvelope() {
+            // Putar Musik
+            const music = document.getElementById('bgMusic');
+            music.play().catch(error => {
+                console.log("Autoplay dicegah browser, butuh interaksi tambahan:", error);
+            });
+
+            // Animasi Hilangkan Amplop
+            const envelopeSection = document.getElementById('envelopeSection');
+            envelopeSection.style.transform = 'scale(0.8)';
+            envelopeSection.style.opacity = '0';
+            
+            setTimeout(() => {
+                envelopeSection.style.display = 'none';
+                
+                // Munculkan Konten Utama
+                const mainContent = document.getElementById('mainContent');
+                mainContent.classList.remove('hidden');
+                setTimeout(() => {
+                    mainContent.classList.add('opacity-100');
+                }, 50);
+
+                // Mulai Efek Kelopak Bunga Bertebaran
+                startFlowers();
+            }, 500);
+        }
+
+        // Fungsi membuat animasi bunga jatuh
+        function startFlowers() {
+            setInterval(() => {
+                const flower = document.createElement('div');
+                flower.classList.add('flower');
+                
+                // Posisi & ukuran acak
+                flower.style.left = Math.random() * 100 + 'vw';
+                const size = Math.random() * 10 + 10; // 10px - 20px
+                flower.style.width = size + 'px';
+                flower.style.height = size + 'px';
+                
+                // Warna variasi pink/merah muda
+                const colors = ['#ff758c', '#ff7eb3', '#ff9a9e', '#fecfef'];
+                flower.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Durasi jatuh acak
+                const duration = Math.random() * 3 + 3; // 3s - 6s
+                flower.style.animationDuration = duration + 's';
+                
+                document.body.appendChild(flower);
+                
+                // Hapus elemen setelah selesai animasi biar gak numpuk di DOM
+                setTimeout(() => {
+                    flower.remove();
+                }, duration * 1000);
+            }, 300);
+        }
+    </script>
+</body>
+</html>
